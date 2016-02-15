@@ -5,3 +5,5 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Post.create(title: "Testvideo please ignore", url: "https://www.youtube.com/watch?v=mviCrWIrUcs", user_id: 1, heat: 0)
