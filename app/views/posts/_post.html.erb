@@ -1,0 +1,21 @@
+<div class="post">
+	<div class="post-top">
+		<span class="post-top"><a class="post-link"><a href="<%= post.url %>" target="_blank"><%= post.title %></a>
+		(<%= post.heat %>)</span>
+<span class="post-meta">
+
+By <%= post.user.name %> on <%= post.created_at %>.
+
+
+<%= link_to 'Show', post %>
+	        <%= link_to 'Edit', edit_post_path(post) %>
+	        <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+
+
+	        </span>
+
+
+
+	</div>
+</div>
