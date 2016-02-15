@@ -21,11 +21,19 @@
 <div class="col-md-12">
 	<header>
 		<h1>SlackerNews 2.0 alpha centauri</h1>
+<ul class="hmenu">
+  <%= render 'devise/menu/registration_items' %>
+  <%= render 'devise/menu/login_items' %>
+</ul>
 	</header>
+
+	<hr>
 
 	<main>
 		<%= yield %>
 	</main>
+
+	<hr>
 
 	<footer>
 		<small>Powered by <a href="https://github.com/kaozente/SlackerNews">the mighty SlackerNews</a></small>

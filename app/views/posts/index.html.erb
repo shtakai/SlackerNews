@@ -1,4 +1,8 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>
+	<p id="notice" class="alert alert-info"><%= notice %></p>
+<% end %>
+
+<%= link_to 'New Post', new_post_path, class: 'btn btn-primary' %>
 
 <h2>Listing Posts</h2>
 
@@ -8,4 +12,4 @@
 
 <br>
 
-<%= link_to 'New Post', new_post_path, class: 'button' %>
+<%= link_to 'New Post', new_post_path, class: 'btn btn-primary' %>
