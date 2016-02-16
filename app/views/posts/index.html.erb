@@ -4,9 +4,22 @@
 
 <%= link_to 'New Post', new_post_path, class: 'btn btn-primary' %>
 
-<div class="posts">
-	<%= render partial: "post", collection: @posts %></div>
-
-<br>
+<div class="row">
+	<div class="col-md-8">
+		<div class="posts">
+			<%= render partial: "post", collection: @posts %></div>
+		
+		<br>
+	</div>
+	<div class="col-md-4">
+		<ul class="nav nav-pills nav-stacked">
+		<% @categories.each do |c| %>
+	  		<li class="nav-item">
+	    		<a class="nav-link" href="#"><%= c.name %></a>
+	  		</li>
+		<% end %>
+</ul>
+	</div>
+</div>
 
 <%= link_to 'New Post', new_post_path, class: 'btn btn-primary' %>
