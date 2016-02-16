@@ -19,6 +19,9 @@
     <%= f.label :url %><br>
     <%= f.text_field :url %>
   </div>
+
+<%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
+
   <div class="actions">
     <%= f.submit %>
   </div>
