@@ -4,14 +4,11 @@
 		(<%= post.heat %>)</span>
 <span class="post-meta">
 
-By <%= post.user.name %> on <%= post.created_at %>.
+<strong><%= post.user.name %></strong> <%= time_ago_in_words(post.created_at) %>.
 
-
-			<%= link_to 'Show', post %>
-	        <%= link_to 'Edit', edit_post_path(post) %>
-	        <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
-
-
+			<%= link_to 'Kommentare', post %>
+	        <%= link_to 'Bearbeiten', edit_post_path(post) %>
+	        <%= link_to 'Löschen', post, method: :delete, data: { confirm: 'Sicher, Luke?' } %>
 
 	        </span>
 

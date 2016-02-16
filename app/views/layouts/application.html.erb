@@ -19,12 +19,20 @@
 	
 <div class="row">
 <div class="col-md-12">
-	<header>
-		<h1>SlackerNews 2.0 alpha centauri</h1>
-<ul class="hmenu">
-  <%= render 'devise/menu/registration_items' %>
-  <%= render 'devise/menu/login_items' %>
-</ul>
+	<header class="row">
+<div class="col-sm-6">
+	<div class="page-header">
+		<a href="<%= root_path %>" class="brand">SlackerNews 2.0</a> <small>alpha centauri</small>
+	</div>
+</div>
+	<div class="col-sm-6 menu-user">
+		<ul class="hmenu">
+		  <%= render 'devise/menu/registration_items' %>
+		  <%= render 'devise/menu/login_items' %>
+		</ul>
+	</div>
+	
+
 	</header>
 
 	<hr>
