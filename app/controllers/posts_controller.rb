@@ -9,6 +9,13 @@ class PostsController < ApplicationController
     @posts = Post.order(created_at: :desc)
   end
 
+  def category
+    @categories = Category.all
+    @cat = Category.find(params[:cat])
+    @posts = @cat.posts.order(created_at: :desc)
+    render 'index'
+  end
+
   # GET /posts/1
   # GET /posts/1.json
   def show

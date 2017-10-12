@@ -1,12 +1,14 @@
 <div class="post">
 	<div class="post-top">
-		<span class="post-top"><a class="post-link"><a href="<%= post.url %>" target="_blank"><%= post.title %></a>
+		<span class="post-top">
+      <a class="post-link" href="<%= post.url %>" target="_blank"><%= post.title %></a>
 		(<%= post.heat %>)
 
-		<% post.categories.each do |c| %>
-		<span class="label label-default"><%= c.name %></span>
-		<% end %>
-
+      <% post.categories.each do |c| %>
+      <span class="label label-default">
+        <%= c.name %>
+      </span>
+      <% end %>
 
 		</span>
 
