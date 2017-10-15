@@ -25,7 +25,10 @@
 	</div>
 	<div class="menu-user">
 		<ul class="hmenu">
+      <% if user_signed_in? %>
       <%= link_to 'New Post', new_post_path, class: 'btn btn-primary' %>
+          <%= current_user.score %>
+      <% end %>
       <%= render 'devise/menu/registration_items' %>
 		  <%= render 'devise/menu/login_items' %>
 		</ul>

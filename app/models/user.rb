@@ -9,4 +9,12 @@ class User < ActiveRecord::Base
   has_many :votes
   has_many :comments
 
+  def score
+    score = 0
+    self.posts.each do |post|
+      score += post.score
+    end
+    return score
+  end
+
 end

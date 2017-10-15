@@ -12,13 +12,17 @@
 
 <p>
   <strong>User:</strong>
-  <%= @post.user_id %>
+  <%= @post.user.name %>
 </p>
 
-<p>
-  <strong>Heat:</strong>
-  <%= @post.heat %>
-</p>
+<h2>Comments</h2>
+
+<% @post.comments.each do |c| %>
+  <div class="comment">
+    <strong><%= c.user.name %>:</strong>
+    <%= c.text %>
+  </div>
+<% end %>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
