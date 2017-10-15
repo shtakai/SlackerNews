@@ -6,4 +6,6 @@ class User < ActiveRecord::Base
 
   has_many :posts
   has_many :categories
+  has_many :votes
+
 end

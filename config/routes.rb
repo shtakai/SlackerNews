@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
-  resources :posts
+  resources :posts do
+    member do
+      get 'upvote' => 'posts#upvote'
+      get 'downvote' => 'posts#downvote'
+    end
+    collection do
+      get 'best' => 'post#index_best'
+    end
+  end
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

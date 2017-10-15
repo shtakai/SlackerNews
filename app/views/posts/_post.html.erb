@@ -2,7 +2,11 @@
 	<div class="post-top">
 		<span class="post-top">
       <a class="post-link" href="<%= post.url %>" target="_blank"><%= post.title %></a>
-		(<%= post.heat %>)
+		(
+      <%= post.score %>
+      <%= link_to('+', upvote_post_path(post)) %> /
+      <%= link_to('-', downvote_post_path(post)) %>
+      )
 
       <% post.categories.each do |c| %>
       <span class="label label-default">
