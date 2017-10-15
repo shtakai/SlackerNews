@@ -7,6 +7,7 @@ class Post < ActiveRecord::Base
 	validates :url, presence: true
 
 	has_many :votes
+	has_many :comments
 
 	def vote(user, amount)
 		vo = self.votes.find_or_initialize_by(user: user)
