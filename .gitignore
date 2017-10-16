@@ -19,3 +19,5 @@
 Gemfile.lock
 .idea
 .byebug_history
+
+*.sublime-workspace

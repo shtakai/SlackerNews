@@ -4,14 +4,10 @@
 
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+<h1><%= @post.title %></h1>
 
 <p>
-  <strong>Url:</strong>
-  <%= @post.url %>
+  <%= link_to @post.url, @post.url %> 
 </p>
 
 <p>
@@ -19,14 +15,23 @@
   <%= @post.user.name %>
 </p>
 
-<h2>Comments</h2>
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>
 
-<% @post.comments.each do |c| %>
+<h2>Comments</h2>
+<h3>Add new comment</h3>
+<%= render "comments/form" %>
+<br>
+
+<% @post.comments.order(created_at: :desc).each do |c| %>
   <div class="comment">
     <strong><%= c.user.name %>:</strong>
-    <%= c.text %>
+    <%= c.text %> 
+
+    <%= link_to [@post, c], method: :delete, data: { confirm: 'Sind Sie sicher?' }, class: "" do %>
+      <i style="color:red" class="">x</i>
+    <% end %>
   </div>
 <% end %>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+
