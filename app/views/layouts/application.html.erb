@@ -8,7 +8,10 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
 
-  <title>SlackerNews</title>
+  <title>
+    <% if Rails.env.development? %>[DEV]<% end %>
+    <%=[content_for(:title), 'SlackerNews'].compact.join(" :: ") %>
+  </title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>

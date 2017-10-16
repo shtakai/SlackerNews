@@ -1,3 +1,7 @@
+<% if @post
+     content_for :title, @post.title
+   end  %>
+
 <p id="notice"><%= notice %></p>
 
 <p>

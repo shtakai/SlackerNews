@@ -1,3 +1,7 @@
+<% if @cat
+    content_for :title, @cat.name
+end  %>
+
 <% if notice %>
 	<p id="notice" class="alert alert-info"><%= notice %></p>
 <% end %>
