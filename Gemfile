@@ -53,6 +53,7 @@ group :development do
 
   gem 'capistrano', '~> 3.4.0'
   gem 'capistrano-uberspace', github: 'tessi/capistrano-uberspace'
+  gem 'passenger'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
