@@ -16,6 +16,9 @@
 </p>
 
 <h2>Comments</h2>
+<h3>Add new comment</h3>
+<%= render "comments/form" %>
+<br>
 
 <% @post.comments.each do |c| %>
   <div class="comment">
