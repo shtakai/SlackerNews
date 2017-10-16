@@ -22,7 +22,11 @@
 <% @post.comments.each do |c| %>
   <div class="comment">
     <strong><%= c.user.name %>:</strong>
-    <%= c.text %>
+    <%= c.text %> 
+
+    <%= link_to [@post, c], method: :delete, data: { confirm: 'Sind Sie sicher?' }, class: "" do %>
+      <i style="color:red" class="">x</i>
+    <% end %>
   </div>
 <% end %>
 
