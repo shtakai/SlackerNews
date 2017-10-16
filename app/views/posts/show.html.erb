@@ -19,7 +19,7 @@
 <%= render "comments/form" %>
 <br>
 
-<% @post.comments.each do |c| %>
+<% @post.comments.order(created_at: :desc).each do |c| %>
   <div class="comment">
     <strong><%= c.user.name %>:</strong>
     <%= c.text %> 
