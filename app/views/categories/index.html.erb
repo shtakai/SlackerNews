@@ -1,0 +1,24 @@
+<h1>All Slackegories</h1>
+
+<%= link_to 'Create new category', new_category_path %>
+<hr>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Parent Category</th>
+            <th>Number of Posts</th>
+            <th>Latest Post</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @categories.each do |category| %>
+            <tr>
+                <td><%= link_to category.name, category %></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

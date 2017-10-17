@@ -12,9 +12,12 @@ end  %>
   </li>
   <% @categories.each do |c| %>
       <li class="nav-item">
-        <%= link_to(c.name, category_posts_path(c)) %>
+        <%= link_to c.name, c %>
       </li>
   <% end %>
+  <li class="nav-item">
+    (<%= link_to("View all", categories_path) %>)
+  </li>
 </ul>
 
 

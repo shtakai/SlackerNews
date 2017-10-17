@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
   has_many :votes
   has_many :comments
 
+  has_many :category_subscriptions
+  has_many :subscriptions, through: :category_subscriptions, :source => :category
+
   def score
     score = 0
     self.posts.each do |post|

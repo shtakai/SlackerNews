@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     end
     resources :comments
   end
+
+  resources :categories
   
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
