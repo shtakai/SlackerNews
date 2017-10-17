@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:show]
+  before_action :set_category, only: [:show, :subscribe, :unsubscribe, :edit, :update]
 
   def index
     @categories = Category.all.order(name: :asc)
@@ -12,6 +12,21 @@ class CategoriesController < ApplicationController
 
   def new
     @category = Category.new
+  end
+
+  def edit
+  end
+
+  def update
+    respond_to do |format|
+      if @category.update(category_params)
+        format.html { redirect_to @category, notice: 'category was successfully updated.' }
+        format.json { render :show, status: :ok, location: @category }
+      else
+        format.html { render :edit }
+        format.json { render json: @category.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def create
@@ -27,6 +42,30 @@ class CategoriesController < ApplicationController
         format.html { render :new }
         format.json { render json: @category.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def subscribe
+    if not @category.subscribed(current_user)
+      if @category.subscribe(current_user)
+        redirect_to @category, notice: 'Successfully subscribed.'
+      else
+        redirect_to @category, notice: 'Could not subscribe.'
+      end
+    else
+      redirect_to @category, notice: 'Could not subscribe.'
+    end
+  end
+
+  def unsubscribe
+    if @category.subscribed(current_user)
+      if @category.unsubscribe(current_user)
+        redirect_to @category, notice: 'Successfully unsubscribed.'
+      else
+        redirect_to @category, notice: 'Could not unsubscribe.'
+      end
+    else
+      redirect_to @category, notice: 'Could not unsubscribe.'
     end
   end
 

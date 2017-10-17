@@ -6,11 +6,17 @@ Rails.application.routes.draw do
     end
     collection do
       get 'best' => 'post#index_best'
+      get 'subscriptions' => 'posts#subscriptions'
     end
     resources :comments
   end
 
-  resources :categories
+  resources :categories do
+    member do
+      get 'subscribe' => 'categories#subscribe'
+      get 'unsubscribe' => 'categories#unsubscribe'
+    end
+  end
   
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.

@@ -2,14 +2,17 @@
     content_for :title, @cat.name
 end  %>
 
-<% if notice %>
-	<p id="notice" class="alert alert-info"><%= notice %></p>
-<% end %>
-
 <ul class="nav">
   <li class="nav-item">
     <%= link_to("Newest", posts_path) %>
   </li>
+  <li class="nav-item">
+    <%= link_to "Subscribed", subscriptions_posts_path %>
+  </li>
+  <li class="nav-item"> 
+  |
+  </li>
+
   <% @categories.each do |c| %>
       <li class="nav-item">
         <%= link_to c.name, c %>

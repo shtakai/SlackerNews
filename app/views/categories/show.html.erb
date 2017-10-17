@@ -1,3 +1,11 @@
+<h1><%= @category.name %> (
+    <% if @category.subscribed(current_user) %>
+        <%= link_to('Unsubscribe', unsubscribe_category_path(@category)) %>
+    <% else %>
+        <%= link_to('Subscribe', subscribe_category_path(@category)) %>
+    <% end %>
+) </h1>
+
 <div class="posts">
     <%= render partial: "posts/post", collection: @posts %>
 </div>

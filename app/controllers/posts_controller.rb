@@ -9,10 +9,21 @@ class PostsController < ApplicationController
     @posts = Post.order(created_at: :desc)
   end
 
+
+  # Probably deprecated. /categories/:id/posts user for now 
   def category
     @categories = Category.all
     @cat = Category.find(params[:cat])
     @posts = @cat.posts.order(created_at: :desc)
+    render 'index'
+  end
+
+  def subscriptions
+    @categories = Category.all
+    # According to this so-post, this cariant is way quicker
+    # https://stackoverflow.com/questions/3941945/array-include-any-value-from-another-array
+    @posts = Post.all.select{|p| p.categories.any? {|c| current_user.subscriptions.include? c }}
+    # @posts = Post.all.select{|p| current_user.subscriptions.include? p.category}
     render 'index'
   end
 

@@ -45,6 +45,9 @@
 	<hr class="clearfix">
 
 	<main>
+        <% if notice %>
+            <p id="notice" class="alert alert-info"><%= notice %></p>
+        <% end %>
 		<%= yield %>
 	</main>
 
