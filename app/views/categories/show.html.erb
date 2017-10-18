@@ -5,6 +5,9 @@
         <%= link_to('Subscribe', subscribe_category_path(@category)) %>
     <% end %>
 ) </h1>
+<h3><%= @category.desc %></h3>
+
+<%= link_to 'Bearbeiten', edit_category_path(@category) %>
 
 <div class="posts">
     <%= render partial: "posts/post", collection: @posts %>
