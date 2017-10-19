@@ -7,7 +7,9 @@
 ) </h1>
 <h3><%= @category.desc %></h3>
 
-<%= link_to 'Bearbeiten', edit_category_path(@category) %>
+<% if can? :update, @category %>
+    <%= link_to 'Kategorie earbeiten', edit_category_path(@category) %>
+<% end %>
 
 <div class="posts">
     <%= render partial: "posts/post", collection: @posts %>

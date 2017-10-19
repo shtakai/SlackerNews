@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   has_many :category_subscriptions
   has_many :subscriptions, through: :category_subscriptions, :source => :category
 
+  as_enum :role, user: 1, mod: 2, admin: 3
+
   def score
     score = 0
     self.posts.each do |post|

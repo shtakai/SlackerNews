@@ -15,9 +15,11 @@ class CategoriesController < ApplicationController
   end
 
   def edit
+    authorize! :update, @category
   end
 
   def update
+    authorize! :update, @category
     respond_to do |format|
       if @category.update(category_params)
         format.html { redirect_to @category, notice: 'category was successfully updated.' }

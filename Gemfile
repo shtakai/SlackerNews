@@ -32,12 +32,16 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'unicorn'
 gem 'passenger'
 
+gem 'simple_enum'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
 gem 'devise'
 gem 'bootstrap', '~> 4.0.0.alpha3'
+
+gem 'cancancan', '~> 2.0'
 
 # source 'http://gems.github.com' do
 # 	gem 'raganwald-andand'
