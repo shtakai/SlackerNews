@@ -1,8 +1,14 @@
 class Category < ActiveRecord::Base
 	has_and_belongs_to_many :posts
 	belongs_to :user
+    
     has_many :category_subscriptions
     has_many :subscribers, through: :category_subscriptions, :source => :user
+
+    has_many :sub_categories, class_name: "Category", foreign_key: "parent_category_id"
+    belongs_to :parent_category, class_name: "Category"
+
+
 
 
     def subscribed(user)
@@ -25,6 +31,14 @@ class Category < ActiveRecord::Base
             return true
         end
         return false
+    end
+
+    private
+
+    def parent_not_self
+        # check that the parent_category is not the same 
+        # select box should not show that in the first place
+        
     end
 
 end
