@@ -6,10 +6,12 @@ Rails.application.routes.draw do
     end
     collection do
       get 'best' => 'post#index_best'
-      get 'subscriptions' => 'posts#subscriptions'
     end
     resources :comments
   end
+
+  get 'subscriptions' => 'posts#subscriptions', :as => :subscriptions_posts
+  get 'user/:id/posts' => 'posts#user_posts', :as => :user_posts
 
   resources :categories do
     member do
