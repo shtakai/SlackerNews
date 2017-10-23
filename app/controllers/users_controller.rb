@@ -2,7 +2,8 @@ class UsersController < ApplicationController
     before_action :set_user, only: [:show, :edit, :update, :destroy]
 
     def show
-        
+        @posts = @user.posts.last(5).reverse
+
     end
 
     def index

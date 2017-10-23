@@ -1,0 +1,5 @@
+<h2>Alle Posts von <%= @user.name %></h2>
+
+<div class="posts">
+    <%= render partial: "posts/post", collection: @posts %>
+</div>

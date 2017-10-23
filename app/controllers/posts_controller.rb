@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
-  before_filter :authenticate_user!, :except => [:show, :index]  
+  before_action :set_user, only: [:user_posts]
+  before_filter :authenticate_user!, :except => [:show, :index, :user_posts]  
 
   # GET /posts
   # GET /posts.json
@@ -25,6 +26,11 @@ class PostsController < ApplicationController
     @posts = Post.all.select{|p| p.categories.any? {|c| current_user.subscriptions.include? c }}
     # @posts = Post.all.select{|p| current_user.subscriptions.include? p.category}
     render 'index'
+  end
+
+  # all posts of a specific user
+  def user_posts
+    @posts = @user.posts
   end
 
   # GET /posts/1
@@ -101,6 +107,10 @@ class PostsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params[:id])
+    end
+
+    def set_user
+      @user = User.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
