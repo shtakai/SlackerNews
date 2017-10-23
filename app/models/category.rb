@@ -33,15 +33,15 @@ class Category < ActiveRecord::Base
         return false
     end
 
+
     # returns own sub_categories and their's (recursively)
     def all_sub_categories
         # watch out, self is not included in here
-        categories = self.sub_categories
-        self.sub_categories.each do |category|
-            categories << category.all_sub_categories
-        end
-        return categories
+        self.sub_categories.map do |category|
+            [category] + category.all_sub_categories
+        end.flatten
     end
+
 
     def all_posts
         category_ids = self.all_sub_categories.map{|c| c.id}
