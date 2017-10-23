@@ -7,7 +7,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @posts = @category.posts.order(created_at: :desc)
+    @posts = @category.all_posts.sort{|a, b| b.created_at <=> a.created_at }
   end
 
   def new
