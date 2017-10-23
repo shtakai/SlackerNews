@@ -8,16 +8,14 @@
             <th>Name</th>
             <th>Parent Category</th>
             <th>Number of Posts</th>
-            <th>Latest Post</th>
         </tr>
     </thead>
     <tbody>
         <% @categories.each do |category| %>
             <tr>
                 <td><%= link_to category.name, category %></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td><%= link_to category.parent_category.name, category.parent_category unless not category.parent_category %></td>
+                <td><%= category.posts.size %></td>
             </tr>
         <% end %>
     </tbody>
