@@ -6,10 +6,12 @@ Rails.application.routes.draw do
     end
     collection do
       get 'best' => 'post#index_best'
-      get 'subscriptions' => 'posts#subscriptions'
     end
     resources :comments
   end
+
+  get 'subscriptions' => 'posts#subscriptions', :as => :subscriptions_posts
+  get 'user/:id/posts' => 'posts#user_posts', :as => :user_posts
 
   resources :categories do
     member do
@@ -19,6 +21,7 @@ Rails.application.routes.draw do
   end
   
   devise_for :users
+  resources :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

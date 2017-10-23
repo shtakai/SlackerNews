@@ -1,0 +1,14 @@
+<h1><%= @user.name %></h1>
+
+
+<% if can? :update, User  %>
+    <%= link_to 'Nutzer Bearbeiten', edit_user_path(@user) %>
+<% end %>
+
+<h2>Letzte Beiträge</h2>
+
+<div class="posts">
+    <%= render partial: "posts/post", collection: @posts %>
+</div>
+
+<%= link_to 'Mehr anzeigen', user_posts_path(@user)%>

@@ -1,6 +1,8 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :subscribe, :unsubscribe, :edit, :update]
 
+  before_action :authenticate_user!, except: [:show, :index]
+
   def index
     @categories = Category.all.order(name: :asc)
     
