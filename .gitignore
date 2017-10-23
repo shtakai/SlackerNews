@@ -21,3 +21,6 @@ Gemfile.lock
 .byebug_history
 
 *.sublime-workspace
+
+
+*.DS_Store

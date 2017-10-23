@@ -1,0 +1,22 @@
+<table>
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Sign in Count</td>
+            <td colspan="3">Aktionen</td>
+        </tr>
+    </thead>
+    <tbody>
+        <% User.all.each do |user|  %>
+            <tr>
+                <td><%= user.id %></td>
+                <td><%= user.name %></td>
+                <td><%= user.sign_in_count %></td>
+                <td><%= link_to 'Anzeigen', user %></td>
+                <td><%= link_to 'Bearbeiten', edit_user_path(user) %></td>
+                <td><%= link_to 'Destroy', user_path(user), method: :delete, data: { confirm: 'Sind Sie ganz und vollständig sicher?' } %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
