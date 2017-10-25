@@ -3,6 +3,9 @@ Rails.application.routes.draw do
     member do
       get 'upvote' => 'posts#upvote'
       get 'downvote' => 'posts#downvote'
+
+      get 'favour' => 'posts#favour'
+      get 'unfavour' => 'posts#unfavour'
     end
     collection do
       get 'best' => 'post#index_best'
@@ -12,6 +15,7 @@ Rails.application.routes.draw do
 
   get 'subscriptions' => 'posts#subscriptions', :as => :subscriptions_posts
   get 'user/:id/posts' => 'posts#user_posts', :as => :user_posts
+  get 'user/:id/favourites' => 'posts#user_favourites', :as => :user_favourites
 
   resources :categories do
     member do

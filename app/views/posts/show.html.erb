@@ -2,7 +2,16 @@
      content_for :title, @post.title
    end  %>
 
-<h1><%= @post.title %></h1>
+<h1><%= @post.title %> (
+    <% if @post.favoured(current_user) %>
+        <%= link_to('Delete from favourites', unfavour_post_path(@post)) %>
+    <% else %>
+        <%= link_to('Save as favourite', favour_post_path(@post)) %>
+    <% end %>
+)</h1>
+
+
+
 
 <p>
   <%= link_to @post.url, @post.url %> 

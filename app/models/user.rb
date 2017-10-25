@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
 
   has_many :category_subscriptions
   has_many :subscriptions, through: :category_subscriptions, :source => :category
+  has_many :post_favourites
+  has_many :favourites, through: :post_favourites, :source => :post
 
   as_enum :role, user: 1, mod: 2, admin: 3
 

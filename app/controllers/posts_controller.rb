@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
-  before_action :set_user, only: [:user_posts]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :upvote, :downvote, :favour, :unfavour]
+  before_action :set_user, only: [:user_posts, :user_favourites]
   before_filter :authenticate_user!, :except => [:show, :index, :user_posts]  
 
   # GET /posts
@@ -33,6 +33,10 @@ class PostsController < ApplicationController
     @posts = @user.posts
   end
 
+  def user_favourites
+    @posts = @user.favourites
+  end
+
   # GET /posts/1
   # GET /posts/1.json
   def show
@@ -47,6 +51,30 @@ class PostsController < ApplicationController
   # GET /posts/1/edit
   def edit
     authorize! :update, @post
+  end
+
+  def favour
+    if not @post.favoured(current_user)
+      if @post.favour(current_user)
+        redirect_to @post, notice: 'Successfully favoured.'
+      else
+        redirect_to @post, notice: 'Could not favour.'
+      end
+    else
+      redirect_to @post, notice: 'Could not favour.'
+    end
+  end
+
+  def unfavour
+    if @post.favoured(current_user)
+      if @post.unfavour(current_user)
+        redirect_to @post, notice: 'Successfully unfavoured.'
+      else
+        redirect_to @post, notice: 'Could not unfavour.'
+      end
+    else
+      redirect_to @post, notice: 'Could not unfavour.'
+    end
   end
 
   # POST /posts

@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
     def show
         @posts = @user.posts.last(5).reverse
-
+        @favoured_posts = @user.favourites.last(5).reverse
     end
 
     def index

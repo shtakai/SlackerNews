@@ -9,6 +9,9 @@ class Post < ActiveRecord::Base
 	has_many :votes
 	has_many :comments
 
+    has_many :post_favourites
+	has_many :favourers, through: :post_favourites, :source => :user
+
 	def vote(user, amount)
 		vo = self.votes.find_or_initialize_by(user: user)
 		vo.amount = amount
@@ -23,6 +26,31 @@ class Post < ActiveRecord::Base
 
 		return score
 	end
+
+	def favoured(user)
+        return self.favourers.include? user
+    end
+
+    def favour(user)
+        if not favoured(user)
+            self.favourers << user
+            self.save
+            return true
+        end
+        return false
+    end
+
+    def unfavour(user)
+        if favoured(user)
+            self.favourers.delete(user)
+            self.save
+            return true
+        end
+        return false
+    end
+
+
+
 
 	def is_valid_url
 		uri = self.url

@@ -12,3 +12,12 @@
 </div>
 
 <%= link_to 'Mehr anzeigen', user_posts_path(@user)%>
+
+
+<h2>Favoriten</h2>
+
+<div class="posts">
+    <%= render partial: "posts/post", collection: @favoured_posts %>
+</div>
+
+<%= link_to 'Mehr anzeigen', user_favourites_path(@user)%>
