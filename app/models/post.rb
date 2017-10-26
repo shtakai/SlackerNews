@@ -14,6 +14,8 @@ class Post < ActiveRecord::Base
 
 	after_create :compute_heat
 
+	scope :title_contains, -> (term) { where("title like ?", "%#{term}%")}
+
 	def vote(user, amount)
 		vo = self.votes.find_or_initialize_by(user: user)
 		vo.amount = amount

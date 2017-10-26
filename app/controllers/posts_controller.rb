@@ -7,7 +7,13 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @categories = Category.all
-    @posts = Post.order(created_at: :desc)
+    if params[:search]
+      @posts = Post.title_contains(params[:search])
+    else
+      @posts = Post.all
+    end
+
+    @posts = @posts.order(created_at: :desc)
   end
 
 
@@ -155,6 +161,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :url, :category_ids => [])
+      params.require(:post).permit(:title, :url, :search, :category_ids => [])
     end
 end
