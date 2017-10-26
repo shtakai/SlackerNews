@@ -9,22 +9,29 @@ class Post < ActiveRecord::Base
 	has_many :votes
 	has_many :comments
 
-    has_many :post_favourites
+  has_many :post_favourites
 	has_many :favourers, through: :post_favourites, :source => :user
 
 	def vote(user, amount)
 		vo = self.votes.find_or_initialize_by(user: user)
 		vo.amount = amount
 		vo.save
+		self.compute_score
+		self.user.compute_karma
 	end
 
 	def score
+		self.vote_cache
+	end
+
+	def compute_score
 		score = 0
 		self.votes.each do |vote|
 			score += vote.amount
 		end
 
-		return score
+		self.vote_cache = score
+		self.save
 	end
 
 	def favoured(user)

@@ -18,12 +18,17 @@ class User < ActiveRecord::Base
 
   as_enum :role, user: 1, mod: 2, admin: 3
 
-  def score
-    score = 0
+  def karma
+    karma_cache
+  end
+
+  def compute_karma
+    karma = 0
     self.posts.each do |post|
-      score += post.score
+      karma += post.score
     end
-    return score
+    self.karma_cache = karma
+    self.save
   end
 
 end
