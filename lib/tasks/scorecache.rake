@@ -9,31 +9,29 @@ namespace :scorecache do
   desc "Recalculate Score Cache for all Posts"
   task :posts => :environment do
     puts "Rebuilding Score Cache for all Post..."
-    Post.find_each { |post|
-      begin
-        scoreBefore = post.score
+    Post.find_each do |post|
+        score_before = post.score
         post.compute_score
-        puts "#{post.id} - score #{post.score}"
-        if post.score != scoreBefore
+        post.compute_heat
+        post.save
+        puts "#{post.id} - score #{post.score}, heat #{post.heat}"
+        if post.score != score_before
           warn("CACHE WAS INCONSISTENT!")
         end
       end
-    }
   end
 
   desc "Recalculate Karma Cache for all Users"
   task :users => :environment do
     puts "Rebuilding Score Cache for all Users..."
-    User.find_each { |user|
-      begin
-        scoreBefore = user.karma
+    User.find_each do |user|
+        score_before = user.karma
         user.compute_karma
         puts "#{user.id} - karma #{user.karma}"
-        if user.karma != scoreBefore
+        if user.karma != score_before
           warn("CACHE WAS INCONSISTENT!")
         end
       end
-    }
   end
 
 

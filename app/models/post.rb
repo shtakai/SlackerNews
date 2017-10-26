@@ -12,11 +12,14 @@ class Post < ActiveRecord::Base
   has_many :post_favourites
 	has_many :favourers, through: :post_favourites, :source => :user
 
+	after_create :compute_heat
+
 	def vote(user, amount)
 		vo = self.votes.find_or_initialize_by(user: user)
 		vo.amount = amount
 		vo.save
 		self.compute_score
+		self.compute_heat
 		self.user.compute_karma
 	end
 
@@ -34,30 +37,36 @@ class Post < ActiveRecord::Base
 		self.save
 	end
 
+	def compute_heat
+		timestamp = self.created_at.to_i
+		factor = 8.hours.to_i
+
+		# simple algo for now
+		self.heat = timestamp + ( self.score * factor )
+		self.save
+	end
+
 	def favoured(user)
         return self.favourers.include? user
+	end
+
+	def favour(user)
+			if not favoured(user)
+					self.favourers << user
+					self.save
+					return true
+			end
+			return false
+	end
+
+	def unfavour(user)
+			if favoured(user)
+					self.favourers.delete(user)
+					self.save
+					return true
+			end
+			return false
     end
-
-    def favour(user)
-        if not favoured(user)
-            self.favourers << user
-            self.save
-            return true
-        end
-        return false
-    end
-
-    def unfavour(user)
-        if favoured(user)
-            self.favourers.delete(user)
-            self.save
-            return true
-        end
-        return false
-    end
-
-
-
 
 	def is_valid_url
 		uri = self.url
