@@ -8,7 +8,8 @@ Rails.application.routes.draw do
       get 'unfavour' => 'posts#unfavour'
     end
     collection do
-      get 'best' => 'post#index_best'
+      get 'best' => 'posts#index_best'
+      get 'hot' => 'posts#index_hot'
     end
     resources :comments
   end

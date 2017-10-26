@@ -19,6 +19,18 @@ class PostsController < ApplicationController
     render 'index'
   end
 
+  def index_hot
+    @categories = Category.all
+    @posts = Post.order(heat: :desc)
+    render 'index'
+  end
+
+  def index_best
+    @categories = Category.all
+    @posts = Post.order(vote_cache: :desc)
+    render 'index'
+  end
+
   def subscriptions
     @categories = Category.all
     # According to this so-post, this cariant is way quicker
