@@ -67,7 +67,7 @@ server 'menkent.uberspace.de',
        roles: [:app, :web, :cron, :db],
        primary: true,
        ssh_options: {
-           keys: %w{~/.ssh/id_rsa.pub},
+           keys: %w{~/.ssh/id_rsa},
            forward_agent: true,
            auth_methods: %w(publickey)
        }
