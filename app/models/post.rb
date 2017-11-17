@@ -1,4 +1,5 @@
 class Post < ActiveRecord::Base
+
 	belongs_to :user
 	has_and_belongs_to_many :categories
 
@@ -13,6 +14,14 @@ class Post < ActiveRecord::Base
 	has_many :favourers, through: :post_favourites, :source => :user
 
 	after_create :compute_heat
+
+	# sorting stuff
+
+	VALID_SORT_ORDERS = %w(best newest hot)
+
+	scope :best, -> { order(vote_cache: :desc)}
+	scope :newest, -> { order(created_at: :desc)}
+	scope :hot, -> { order(heat: :desc)}
 
 	def vote(user, amount)
 		vo = self.votes.find_or_initialize_by(user: user)

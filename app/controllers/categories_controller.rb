@@ -8,9 +8,10 @@ class CategoriesController < ApplicationController
     
   end
 
-  def show
-    @posts = @category.all_posts.sort{|a, b| b.created_at <=> a.created_at }
-  end
+  # def show
+  #   # @categories = Category.all
+  #   render :controller => 'posts_controller', :action => 'index'
+  # end
 
   def new
     @category = Category.new

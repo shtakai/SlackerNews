@@ -1,52 +1,40 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy, :upvote, :downvote, :favour, :unfavour]
+  before_action :load_categories
   before_action :set_user, only: [:user_posts, :user_favourites]
   before_filter :authenticate_user!, :except => [:show, :index, :user_posts]  
 
   # GET /posts
   # GET /posts.json
   def index
-    @categories = Category.all
-    @posts = Post.order(created_at: :desc)
+    @posts = sort(Post.all)
   end
 
 
   # Probably deprecated. /categories/:id/posts user for now 
   def category
-    @categories = Category.all
-    @cat = Category.find(params[:cat])
-    @posts = @cat.posts.order(created_at: :desc)
+    @category = Category.find(params[:id])
+    @posts = sort(@category.posts)
     render 'index'
   end
 
-  def index_hot
-    @categories = Category.all
-    @posts = Post.order(heat: :desc)
-    render 'index'
-  end
-
-  def index_best
-    @categories = Category.all
-    @posts = Post.order(vote_cache: :desc)
-    render 'index'
-  end
 
   def subscriptions
-    @categories = Category.all
-    # According to this so-post, this cariant is way quicker
+    # According to this so-post, this variant is way quicker
     # https://stackoverflow.com/questions/3941945/array-include-any-value-from-another-array
-    @posts = Post.all.select{|p| p.categories.any? {|c| current_user.subscriptions.include? c }}
+    @posts = sort(Post.all)
+    @posts = @posts.select{|p| p.categories.any? {|c| current_user.subscriptions.include? c }}
     # @posts = Post.all.select{|p| current_user.subscriptions.include? p.category}
     render 'index'
   end
 
   # all posts of a specific user
   def user_posts
-    @posts = @user.posts
+    @posts = sort(@user.posts)
   end
 
   def user_favourites
-    @posts = @user.favourites
+    @posts = sort(@user.favourites)
   end
 
   # GET /posts/1
@@ -151,6 +139,19 @@ class PostsController < ApplicationController
 
     def set_user
       @user = User.find(params[:id])
+    end
+
+    def load_categories
+      @categories = Category.all
+    end
+
+    def sort(posts)
+      case params[:sortby]
+        when 'hot' then posts.hot
+        when 'best' then posts.best
+        when 'newest' then posts.newest
+        else posts.newest
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
