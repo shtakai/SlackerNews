@@ -11,7 +11,7 @@
     <%= render partial: "posts/post", collection: @posts %>
 </div>
 
-<%= link_to 'Mehr anzeigen', user_posts_path(@user)%>
+<%= link_to 'Mehr anzeigen', user_posts_user_path(@user)%>
 
 
 <h2>Favoriten</h2>
@@ -20,4 +20,4 @@
     <%= render partial: "posts/post", collection: @favoured_posts %>
 </div>
 
-<%= link_to 'Mehr anzeigen', user_favourites_path(@user)%>
+<%= link_to 'Mehr anzeigen', user_favourites_user_path(@user)%>

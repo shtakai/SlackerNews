@@ -4,8 +4,17 @@ Rails.application.routes.draw do
 
   constraints ValidSortOrder do
 
-    get 'subscriptions/(:sortby)' => 'posts#subscriptions', :as => :subscriptions_posts
+    devise_for :users
+    resources :users do
+      member do
+        get 'posts(/:sortby)' => 'posts#user_posts', :as => :user_posts
+        get 'favourites(/:sortby)' => 'posts#user_favourites', :as => :user_favourites
+        get :admin_edit
+        patch :admin_update
+      end
+    end
 
+    get 'subscriptions/(:sortby)' => 'posts#subscriptions', :as => :subscriptions_posts
     resources :posts, :path => '/' do
       member do
         get 'upvote' => 'posts#upvote'
@@ -29,15 +38,6 @@ Rails.application.routes.draw do
       end
     end
 
-    devise_for :users
-    resources :users do
-      member do
-        get 'posts(/:sortby)' => 'posts#user_posts', :as => :user_posts
-        get 'favourites(/:sortby)' => 'posts#user_favourites', :as => :user_favourites
-        get :admin_edit
-        patch :admin_update
-      end
-    end
 
   end
 
