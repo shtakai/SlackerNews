@@ -1,0 +1,23 @@
+<h1><%= @category.name %> (
+  <% if @category.subscribed(current_user) %>
+      <%= link_to('Unsubscribe', unsubscribe_category_path(@category)) %>
+  <% else %>
+      <%= link_to('Subscribe', subscribe_category_path(@category)) %>
+  <% end %>
+  ) </h1>
+<% if @category.parent_category %>
+    <h5>Überkategorie: <%= link_to @category.parent_category.name, @category.parent_category %></h5>
+<% end %>
+<% if not @category.sub_categories.empty? %>
+    <h5>Unterkategorien:
+      <% @category.sub_categories.each do |c| %>
+          <%= link_to c.name, c %>
+      <% end %>
+
+    </h5>
+<% end %>
+<h3><%= @category.desc %></h3>
+
+<% if can? :update, @category %>
+    <%= link_to 'Kategorie bearbeiten', edit_category_path(@category) %>
+<% end %>

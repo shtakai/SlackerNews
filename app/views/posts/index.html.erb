@@ -1,16 +1,17 @@
-<% if @cat
-    content_for :title, @cat.name
+<%= if @category
+    content_for :title, @category.name
+     render 'categories/category_header'
 end  %>
 
 <ul class="nav">
   <li class="nav-item">
-    <%= link_to("Newest", posts_path) %>
+    <%= link_to("Newest", :sortby => 'newest') %>
   </li>
   <li class="nav-item">
-    <%= link_to("Hot", hot_posts_path) %>
+    <%= link_to("Hot", :sortby => 'hot') %>
   </li>
   <li class="nav-item">
-    <%= link_to("Best Ever", best_posts_path) %>
+    <%= link_to("Best Ever", :sortby => 'best') %>
   </li>
   <li class="nav-item">
     <%= link_to "Subscribed", subscriptions_posts_path %>
