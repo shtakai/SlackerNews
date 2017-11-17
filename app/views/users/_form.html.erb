@@ -1,14 +1,10 @@
 <%= form_for @user do |f| %>
-    <div class="field">
-        <%= f.label "Bestätigt" %>
-        <%= f.check_box :approved %>
-    </div>
-    <div class="field">
-        <%= f.label "Rolle" %>
-        <%= f.select :role, enum_option_pairs(User, :role) %>
-    </div>
 
+    
+    <div><%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true %></div>
+<br>
     <div class="actions">
-        <%= f.submit %>
+        <%= f.submit 'Update' %>
     </div>
 <% end %>
