@@ -34,6 +34,8 @@ Rails.application.routes.draw do
       member do
         get 'posts(/:sortby)' => 'posts#user_posts', :as => :user_posts
         get 'favourites(/:sortby)' => 'posts#user_favourites', :as => :user_favourites
+        get :admin_edit
+        patch :admin_update
       end
     end
 

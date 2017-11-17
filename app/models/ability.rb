@@ -16,6 +16,11 @@ class Ability
         post.user == user
       end
 
+      # only allow update and edit, admin functions are in other action
+      can [:update, :edit], User do |u|
+        u == user
+      end
+
       # admin is within the role enum, if you ever wonder (thanks simple_enum)
       if user.admin?
         can :manage, :all

@@ -29,8 +29,8 @@
     		<a href="<%= root_path %>" class="brand">SlackerNews 2.0</a> <small>alpha centauri</small>
     	</div>
       <div class="menu-user">
-        <% if can? :update, User  %>
-              <%= link_to 'Nutzer bearbeiten', users_path %>
+        <% if can? :manage, User  %>
+              <%= link_to 'Nutzer verwalten', users_path %>
         <% end %>
           <% if user_signed_in? %>
               <%= link_to 'New Post', new_post_path, class: 'btn btn-primary' %>
@@ -45,6 +45,7 @@
               <div class="dropdown-content">
                 <ul>
                     <li><%= link_to 'Profil anzeigen', current_user %></li>
+                    <li><%= link_to 'Profil bearbeiten', edit_user_path(current_user) %></li>
                     <%= render 'devise/menu/registration_items' %>
                     <%= render 'devise/menu/login_items' %>
                 </ul>
