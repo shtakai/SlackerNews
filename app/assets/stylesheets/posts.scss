@@ -33,7 +33,12 @@
   display: block;
 }
 
-.post-meta a
+.post-link:visited
+{
+  color: #999;
+}
+
+.post-meta a, .post-meta a:visited
 {
   color: #888;
 }
