@@ -14,13 +14,15 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :categories, :path => 'slackegory', param: :slug do
+    resources :categories, :path => 'slackegory', param: :slug, :except => :show do
       member do
         get 'subscribe' => 'categories#subscribe'
         get 'unsubscribe' => 'categories#unsubscribe'
-        get '(:sortby)' => 'posts#category'
       end
     end
+    get 'slackegory/:slug(/:sortby)' => 'posts#category'
+
+
 
     get 'subscriptions/(:sortby)' => 'posts#subscriptions', :as => :subscriptions_posts
     
