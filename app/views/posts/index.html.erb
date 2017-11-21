@@ -3,7 +3,10 @@
      render 'categories/category_header'
 end  %>
 
-<ul class="nav">
+<ul class="nav sort">
+
+
+
   <li class="nav-item">
     <%= link_to("Newest", :sortby => 'newest') %>
   </li>
@@ -16,18 +19,20 @@ end  %>
   <li class="nav-item">
     <%= link_to "Subscribed", subscriptions_posts_path %>
   </li>
-  <li class="nav-item"> 
-  |
-  </li>
+</ul>
 
-  <% @categories.each do |c| %>
-      <li class="nav-item">
-        <%= link_to c.name, c %>
-      </li>
-  <% end %>
-  <li class="nav-item">
-    (<%= link_to("View all", categories_path) %>)
-  </li>
+<ul class="nav categories">
+
+    <% @categories.each do |c| %>
+        <li class="nav-item">
+          <%= link_to c.name, c %>
+        </li>
+    <% end %>
+    <li class="nav-item">
+      (<%= link_to("View all", categories_path) %>)
+    </li>
+
+
 </ul>
 
 

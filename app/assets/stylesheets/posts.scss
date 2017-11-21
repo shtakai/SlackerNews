@@ -38,8 +38,21 @@
   color: #999;
 }
 
-.post-meta a, .post-meta a:visited
+.post-meta .post-user a, .post-user a:visited
+{
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.post-comments-link
 {
   color: #888;
+}
+
+.category-label a
+{
+  background-color: #ddd;
+  //margin-right:
 }
 

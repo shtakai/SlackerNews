@@ -9,8 +9,8 @@
       )
 
       <% post.categories.each do |c| %>
-      <span class="label label-default">
-        <%= c.name %>
+      <span class="category-label">
+        <%= link_to(c.name, c) %>
       </span>
       <% end %>
 
@@ -18,14 +18,13 @@
 
     <span class="post-meta">
 
-      <strong><%= post.user.name %></strong> <%= time_ago_in_words(post.created_at) %>.
+      <span class="post-user"><%= link_to(post.user.name, post.user) %></span>
+      <%= time_ago_in_words(post.created_at) %>.
 
-			<%= link_to post do %>
+			<%= link_to post, { :class => "post-comments-link" }  do %>
         Kommentare
         <% if post.comments.count > 0 %>(<%= post.comments.count %>)<% end %>
       <% end  %>
-	        <!--<%= link_to 'Bearbeiten', edit_post_path(post) %>-->
-	        <!--<%= link_to 'Löschen', post, method: :delete, data: { confirm: 'Sicher, Luke?' } %>-->
 
 	  </span>
 
