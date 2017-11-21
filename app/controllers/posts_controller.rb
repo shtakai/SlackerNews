@@ -13,7 +13,7 @@ class PostsController < ApplicationController
 
   # Probably deprecated. /categories/:id/posts user for now 
   def category
-    @category = Category.find(params[:id])
+    @category = Category.find_by_slug!(params[:slug])
     @posts = sort(@category.posts)
     render 'index'
   end

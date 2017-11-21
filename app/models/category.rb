@@ -52,6 +52,10 @@ class Category < ActiveRecord::Base
         # return Post.select{|p| category_ids.include? p.category}
     end
 
+      def to_param  # overridden
+          slug
+      end
+
 
     private
 
