@@ -14,6 +14,14 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :categories, :path => 'slackegory' do
+      member do
+        get 'subscribe' => 'categories#subscribe'
+        get 'unsubscribe' => 'categories#unsubscribe'
+        get '(:sortby)' => 'posts#category'
+      end
+    end
+
     get 'subscriptions/(:sortby)' => 'posts#subscriptions', :as => :subscriptions_posts
     resources :posts, :path => '/' do
       member do
@@ -30,13 +38,7 @@ Rails.application.routes.draw do
     end
 
 
-    resources :categories, :path => 'c' do
-      member do
-        get 'subscribe' => 'categories#subscribe'
-        get 'unsubscribe' => 'categories#unsubscribe'
-        get '(:sortby)' => 'posts#category'
-      end
-    end
+
 
 
   end # ValidSortOrderConstraint
