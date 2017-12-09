@@ -29,12 +29,9 @@
     		<a href="<%= root_path %>" class="brand">SlackerNews 2.0</a> <small>alpha centauri</small>
     	</div>
       <div class="menu-user">
-        <% if can? :manage, User  %>
-              <%= link_to 'Nutzer verwalten', users_path %>
-        <% end %>
           <% if user_signed_in? %>
-              <%= link_to 'New Post', new_post_path, class: 'btn btn-primary' %>
-              <%= current_user.karma %>
+            <%= link_to 'All Users', users_path %> | 
+            <%= link_to 'New Post', new_post_path, class: 'btn btn-primary' %>
 
               
             <div class="dropdown">
@@ -51,6 +48,7 @@
                 </ul>
               </div>
             </div>  
+            <%= current_user.karma %>
           <% else %>
             <ul class="hmenu">
               <%= render 'devise/menu/login_items' %><%= render 'devise/menu/registration_items' %>

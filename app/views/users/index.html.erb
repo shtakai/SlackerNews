@@ -1,22 +1,36 @@
 <table>
     <thead>
         <tr>
-            <td>ID</td>
-            <td>Name</td>
-            <td>Sign in Count</td>
-            <td colspan="4">Aktionen</td>
+            <th><!-- Avatar --></th>
+            <th>Name</th>
+            <th>Karma</th>
+            <th># Posts</th>
+            <th># Comments</th>
+            <th># Categories </th>
+            <% if can? :manage, User %>
+                <th>ID</th>
+                <th>Sign in Count</th>
+                <th colspan="4">Aktionen</th>
+            <% end %>
         </tr>
     </thead>
     <tbody>
         <% User.all.each do |user|  %>
             <tr>
-                <td><%= user.id %></td>
+                <td><!-- Hier kommt mal der avatar hin --></td>
                 <td><%= user.name %></td>
-                <td><%= user.sign_in_count %></td>
-                <td><%= link_to 'Anzeigen', user %></td>
-                <td><%= link_to 'Profil Bearbeiten', edit_user_path(user) %></td>
-                <td><%= link_to 'Rechte verwalten', admin_edit_user_path(user) %></td>
-                <td><%= link_to 'Destroy', user_path(user), method: :delete, data: { confirm: 'Sind Sie ganz und vollständig sicher?' } %></td>
+                <td><%= user.karma %></td>
+                <td><%= user.posts.size %></td>
+                <td><%= user.comments.size %></td>
+                <td><%= user.categories.size %></td>
+                <% if can? :manage, User %>
+                    <td><%= user.id %></td>
+                    <td><%= user.sign_in_count %></td>
+                    <td><%= link_to 'Anzeigen', user %></td>
+                    <td><%= link_to 'Profil Bearbeiten', edit_user_path(user) %></td>
+                    <td><%= link_to 'Rechte verwalten', admin_edit_user_path(user) %></td>
+                    <td><%= link_to 'Destroy', user_path(user), method: :delete, data: { confirm: 'Sind Sie ganz und vollständig sicher?' } %></td>
+                <% end %>
             </tr>
         <% end %>
     </tbody>
