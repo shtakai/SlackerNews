@@ -19,6 +19,10 @@
     <%= f.label :url %><br>
     <%= f.text_field :url %>
   </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
 
     <label for="">Categories</label>
 <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
