@@ -4,13 +4,15 @@ class Post < ActiveRecord::Base
 	has_and_belongs_to_many :categories
 
 	validates :title, presence: true
+	
 	validates :url, presence: true
 	validate :is_valid_url
+	validates_uniqueness_of :url
 
 	has_many :votes
 	has_many :comments
 
-  has_many :post_favourites
+    has_many :post_favourites
 	has_many :favourers, through: :post_favourites, :source => :user
 
 	after_create :compute_heat
@@ -22,6 +24,16 @@ class Post < ActiveRecord::Base
 	scope :best, -> { order(vote_cache: :desc)}
 	scope :newest, -> { order(created_at: :desc)}
 	scope :hot, -> { order(heat: :desc)}
+
+
+	# ============================
+	# Class Methods
+	# ============================
+
+
+	# ============================
+	# Instance Methods
+	# ============================
 
 	def vote(user, amount)
 		vo = self.votes.find_or_initialize_by(user: user)
