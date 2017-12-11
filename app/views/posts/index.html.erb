@@ -42,5 +42,8 @@ end  %>
 		<br>
 
 
-
-<%= link_to 'New Post', new_post_path, class: 'btn btn-primary' %>
+<% if not @category %>
+  <%= link_to 'New Post', new_post_path, class: 'btn btn-primary' %>
+<% else %>
+  <%= link_to 'New Post', new_post_path(:slackegory => @category.id), class: 'btn btn-primary' %>
+<% end %>

@@ -45,6 +45,16 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
+    # if this comes from within a category, directly preselect that
+    if request.params[:slackegory]
+      begin
+        @category = Category.find(request.params[:slackegory].to_i)
+        # integer conversion returns 0 if the string does not make sense, so no need to catch anything for that
+      rescue ActiveRecord::RecordNotFound => e
+        # nothing has to be done here, @category just stays empty
+        # probable a funny internet kid trying to exploit our roues
+      end
+    end
     @post = Post.new
   end
 

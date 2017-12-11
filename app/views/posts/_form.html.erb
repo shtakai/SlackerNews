@@ -25,7 +25,12 @@
   </div>
 
     <label for="">Categories</label>
-<%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
+      <% if not @category %>
+        <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
+      <% else %>
+        <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name, checked: @category.id) %>
+      <% end %>
+
 
   <div class="actions">
     <%= f.submit %>

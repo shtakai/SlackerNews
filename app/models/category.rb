@@ -9,6 +9,7 @@ class Category < ActiveRecord::Base
     belongs_to :parent_category, class_name: "Category"
 
     validates_uniqueness_of :slug
+    validates_uniqueness_of :name
 
 
 
