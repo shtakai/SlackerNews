@@ -7,14 +7,14 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = sort(Post.all)
+    @posts = paginate(sort(Post.all))
   end
 
 
   # Probably deprecated. /categories/:id/posts user for now 
   def category
     @category = Category.find_by_slug!(params[:slug])
-    @posts = sort(@category.posts)
+    @posts = paginate(sort(@category.posts))
     render 'index'
   end
 
@@ -22,7 +22,7 @@ class PostsController < ApplicationController
   def subscriptions
     # According to this so-post, this variant is way quicker
     # https://stackoverflow.com/questions/3941945/array-include-any-value-from-another-array
-    @posts = sort(Post.all)
+    @posts = paginate(sort(Post.all))
     @posts = @posts.select{|p| p.categories.any? {|c| current_user.subscriptions.include? c }}
     # @posts = Post.all.select{|p| current_user.subscriptions.include? p.category}
     render 'index'
@@ -30,11 +30,11 @@ class PostsController < ApplicationController
 
   # all posts of a specific user
   def user_posts
-    @posts = sort(@user.posts)
+    @posts = paginate(sort(@user.posts))
   end
 
   def user_favourites
-    @posts = sort(@user.favourites)
+    @posts = paginate(sort(@user.favourites))
   end
 
   # GET /posts/1
@@ -162,6 +162,10 @@ class PostsController < ApplicationController
         when 'newest' then posts.newest
         else posts.newest
       end
+    end
+
+    def paginate(posts)
+      posts.page(params[:page] ? params[:page] : 1)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

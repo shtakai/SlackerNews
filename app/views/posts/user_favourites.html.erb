@@ -1,5 +1,9 @@
 <h2>Alle Favoriten von <%= @user.name %></h2>
 
+<div class="pagination-container">
+  <%= will_paginate @posts %>
+</div>
+
 <div class="posts">
     <%= render partial: "posts/post", collection: @posts %>
 </div>

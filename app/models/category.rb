@@ -12,6 +12,7 @@ class Category < ActiveRecord::Base
     validates_uniqueness_of :name
 
 
+    self.per_page = 20
 
     def subscribed(user)
         return self.subscribers.include? user

@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
 
   def index
-    @categories = Category.all.order(name: :asc)
+    @categories = Category.all.order(name: :asc).page(params[:page] ? params[:page] : 1)
     
   end
 

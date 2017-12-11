@@ -27,6 +27,9 @@ class Post < ActiveRecord::Base
 	scope :hot, -> { order(heat: :desc)}
 
 
+	# a very good thing to get from global settings
+	self.per_page = 20
+
 	# ============================
 	# Class Methods
 	# ============================
