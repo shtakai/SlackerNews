@@ -8,6 +8,7 @@ class Post < ActiveRecord::Base
 	validates :url, presence: true
 	validate :is_valid_url
 	validates_uniqueness_of :url
+	validates :categories, presence: true
 
 	has_many :votes
 	has_many :comments
