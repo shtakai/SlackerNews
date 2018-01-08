@@ -22,7 +22,7 @@
       <%= time_ago_in_words(post.created_at) %>.
 
 			<%= link_to post, { :class => "post-comments-link" }  do %>
-        Kommentare
+        Comments
         <% if post.comments.count > 0 %>(<%= post.comments.count %>)<% end %>
       <% end  %>
 

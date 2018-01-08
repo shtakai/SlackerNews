@@ -6,10 +6,10 @@
   <% end %>
   ) </h1>
 <% if @category.parent_category %>
-    <h5>Überkategorie: <%= link_to @category.parent_category.name, @category.parent_category %></h5>
+    <h5>Parent-Slackegory: <%= link_to @category.parent_category.name, @category.parent_category %></h5>
 <% end %>
 <% if not @category.sub_categories.empty? %>
-    <h5>Unterkategorien:
+    <h5>Sub-Slackegories:
       <% @category.sub_categories.each do |c| %>
           <%= link_to c.name, c %>
       <% end %>
@@ -19,5 +19,5 @@
 <h3><%= @category.desc %></h3>
 
 <% if can? :update, @category %>
-    <%= link_to 'Kategorie bearbeiten', edit_category_path(@category) %>
+    <%= link_to 'Edit Slackegory', edit_category_path(@category) %>
 <% end %>

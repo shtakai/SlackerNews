@@ -36,13 +36,13 @@
               
             <div class="dropdown">
               <button class="dropbtn"><u>
-                <%= current_user.name != "" ? current_user.name : 'hier könnte dein name stehen'%>
+                <%= current_user.name != "" ? current_user.name : 'this could be your name'%>
                   
                 </u></button>
               <div class="dropdown-content">
                 <ul>
-                    <li><%= link_to 'Profil anzeigen', current_user %></li>
-                    <li><%= link_to 'Profil bearbeiten', edit_user_path(current_user) %></li>
+                    <li><%= link_to 'Show Profile', current_user %></li>
+                    <li><%= link_to 'Edit Profile', edit_user_path(current_user) %></li>
                     <%= render 'devise/menu/registration_items' %>
                     <%= render 'devise/menu/login_items' %>
                 </ul>

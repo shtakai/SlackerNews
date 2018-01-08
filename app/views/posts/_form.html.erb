@@ -24,7 +24,7 @@
     <%= f.text_field :description %>
   </div>
 
-    <label for="">Categories</label>
+    <label for="">Slackegories</label>
       <% if not @category %>
         <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
       <% else %>

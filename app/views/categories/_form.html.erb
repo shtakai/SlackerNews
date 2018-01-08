@@ -17,7 +17,7 @@
   </div>
   
   <div class="field">
-    <%= f.label 'Beschreibung' %><br>
+    <%= f.label 'Description' %><br>
     <%= f.text_field :desc %>
   </div>
 
@@ -27,7 +27,7 @@
   </div>
 
   <div class="field">
-    <%= f.label 'Überkategorie' %><br>
+    <%= f.label 'Parent-Slackegory' %><br>
     <!-- Substract the category itself, to not allow select itself as parent -->
     <!-- Works aswell for new view and creating, as substracting something not in the array from it will not alter it -->
       <%= f.collection_select :parent_category_id, Category.order(:name) - [@category],:id,:name, include_blank: true %>
