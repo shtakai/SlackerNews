@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :set_post
   before_action :set_comment, only: [:destroy]
+  before_filter :authenticate_user!
 
   def create
     @comment = Comment.new(comment_params)
@@ -19,6 +20,8 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    # normal users can update their comments and 
+    authorize! :destroy, @comment
     @comment.destroy
     respond_to do |format|
       format.html { redirect_to @post, notice: 'Comment was successfully destroyed.' }

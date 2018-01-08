@@ -8,7 +8,7 @@ class Ability
         category.user == user
       end
 
-      can :update, Comment do |comment|
+      can [:update, :destroy], Comment do |comment|
         comment.user == user
       end
 

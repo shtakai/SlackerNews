@@ -53,8 +53,10 @@
     <strong><%= c.user.name %>:</strong>
     <%= c.text %> 
 
-    <%= link_to [@post, c], method: :delete, data: { confirm: 'Are you sure?' }, class: "" do %>
-      <i style="color:red" class="">x</i>
+    <% if can? :destroy, c %>
+      <%= link_to [@post, c], method: :delete, data: { confirm: 'Are you sure?' }, class: "" do %>
+        <i style="color:red" class="">x</i>
+      <% end %>
     <% end %>
   </div>
 <% end %>
