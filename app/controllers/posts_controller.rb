@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :upvote, :downvote, :favour, :unfavour]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :upvote, :downvote, :favour, :unfavour, :mark_as_deleted]
   before_action :load_categories
   before_action :set_user, only: [:user_posts, :user_favourites]
   before_filter :authenticate_user!, :except => [:show, :index, :user_posts]  
@@ -8,6 +8,12 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = paginate(sort(Post.all))
+  end
+
+  def index_deleted
+    authorize! :manage, Post
+    # magic number 2 stands for deleted
+    @posts = paginate(sort(Post.unscoped.where(status_cd: 2)))
   end
 
 
@@ -93,7 +99,6 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user = current_user
 
-
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
@@ -120,10 +125,26 @@ class PostsController < ApplicationController
     end
   end
 
+  def mark_as_deleted
+    # if a user "deletes" a post, it is only marked like this, so that admins have an overview over deleted posts
+    authorize! :update, @post
+    @post.status = :deleted
+    if @post.save
+      flash[:notice] = 'Post was successfully deleted.'
+      redirect_to current_user
+    else
+      flash[:alert] = 'Something went wrong :/'
+      redirect_to @post
+    end
+  end
+
+
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
-    authorize! :update, @post
+    # only admins can actually delete. This is not present in the ui yet.
+    # other users will only be able to mark them as deleted
+    authorize! :manage, @post
     @post.destroy
     respond_to do |format|
       format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
@@ -170,6 +191,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :url, :description, :category_ids => [])
+      params.require(:post).permit(:title, :url, :description, :status, :category_ids => [])
     end
 end

@@ -33,17 +33,26 @@ Rails.application.routes.draw do
 
         get 'favour' => 'posts#favour'
         get 'unfavour' => 'posts#unfavour'
+
+        # DELETE is actually not very cruddy/resty for marking it as such, but makes it look like an actuall delete
+        delete 'delete' => 'posts#mark_as_deleted'
       end
       collection do
         get '(:sortby)' => 'posts#index'
       end
       resources :comments
     end
-
-
-
-
-
   end # ValidSortOrderConstraint
+
+  authenticate :user, lambda { |u| u.admin? } do
+    scope "/admin" do
+      get 'posts/deleted' => 'posts#index_deleted', :as => :index_deleted
+    end
+  end
+
+
+
+
+
 
 end

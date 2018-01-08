@@ -39,9 +39,9 @@
 
 
 <% if can? :update, @post %>
-  <%= link_to 'Edit', edit_post_path(@post) %> |
+  <%= link_to 'Edit', edit_post_path(@post) %> <br>
+  <%= link_to 'Delete', delete_post_path(@post), method: :delete, data: { confirm: 'Sind Sie sicher?' } %>
 <% end %>
-<%= link_to 'Back', posts_path %>
 
 <h2>Comments</h2>
 <h3>Add new comment</h3>
@@ -53,7 +53,7 @@
     <strong><%= c.user.name %>:</strong>
     <%= c.text %> 
 
-    <%= link_to [@post, c], method: :delete, data: { confirm: 'Sind Sie sicher?' }, class: "" do %>
+    <%= link_to [@post, c], method: :delete, data: { confirm: 'Are you sure?' }, class: "" do %>
       <i style="color:red" class="">x</i>
     <% end %>
   </div>

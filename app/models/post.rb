@@ -1,4 +1,6 @@
 class Post < ActiveRecord::Base
+	default_scope { where(status_cd: 1) }
+
 
 	belongs_to :user
 	has_and_belongs_to_many :categories
@@ -17,6 +19,8 @@ class Post < ActiveRecord::Base
 	has_many :favourers, through: :post_favourites, :source => :user
 
 	after_create :compute_heat
+
+	as_enum :status, pending: 0, published: 1, deleted: 2
 
 	# sorting stuff
 
