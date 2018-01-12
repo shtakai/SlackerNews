@@ -1,7 +1,7 @@
 # config valid only for current version of Capistrano
 lock '3.4.1'
 
-server 'slackernews.de', port: your_port_num, roles: [:web, :app, :db], primary: true
+server 'slackernews.de', port: 22, roles: [:web, :app, :db], primary: true
 
 set :application, 'SlackerNews'
 set :repo_url, 'git@github.com:kaozente/SlackerNews.git'
