@@ -75,6 +75,12 @@ GEM
     capistrano-rails (1.3.0)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
+    capistrano-rvm (0.1.2)
+      capistrano (~> 3.0)
+      sshkit (~> 1.2)
+    capistrano3-puma (1.2.1)
+      capistrano (~> 3.0)
+      puma (>= 2.6)
     coderay (1.1.2)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
@@ -125,6 +131,7 @@ GEM
       rack
       rake (>= 0.8.1)
     pg (0.18.2)
+    puma (3.11.0)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -210,13 +217,18 @@ DEPENDENCIES
   byebug
   cancancan (~> 2.0)
   capistrano (~> 3.4.0)
+  capistrano-bundler
+  capistrano-rails
+  capistrano-rvm
   capistrano-uberspace!
+  capistrano3-puma
   coffee-rails (~> 4.1.0)
   devise
   jbuilder (~> 2.0)
   jquery-rails
   passenger
   pg
+  puma
   rails (= 4.2.4)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

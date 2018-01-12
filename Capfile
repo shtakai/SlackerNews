@@ -4,6 +4,13 @@ require 'capistrano/setup'
 # Include default deployment tasks
 require 'capistrano/deploy'
 
+
+# host europe settings
+require 'capistrano/rails'
+require 'capistrano/bundler'
+require 'capistrano/rvm'
+require 'capistrano/puma'
+
 # Include tasks from other gems included in your Gemfile
 #
 # For documentation on these, see for example:
@@ -24,11 +31,15 @@ require 'capistrano/deploy'
 # require 'capistrano/passenger'
 
 
-require 'capistrano/bundler'
-require 'capistrano/rails'
-require 'capistrano/rails/assets'
-require 'capistrano/rails/migrations'
-require 'capistrano/uberspace'
+
+# old settings from uberspace
+# require 'capistrano/bundler'
+# require 'capistrano/rails'
+# require 'capistrano/rails/assets'
+# require 'capistrano/rails/migrations'
+# require 'capistrano/uberspace'
+
+
 
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined
 Dir.glob('lib/capistrano/tasks/*.rake').each { |r| import r }
