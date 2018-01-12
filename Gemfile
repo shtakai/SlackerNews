@@ -68,7 +68,7 @@ group :development do
   gem 'capistrano-bundler', require: false
   gem 'capistrano3-puma',   require: false
 
-  gem 'capistrano-uberspace', github: 'tessi/capistrano-uberspace'
+  # gem 'capistrano-uberspace', github: 'tessi/capistrano-uberspace'
 
 
 
