@@ -76,4 +76,4 @@ set :user, 'slacker'
 set :environment, :production
 set :branch, :master
 set :domain, 'slackernews.de'
-set :ruby_version, '2.5.0'  # default is '2.3.1', can be set to every ruby version supported by uberspace.
+set :ruby_version, '2.2.3'  # default is '2.3.1', can be set to every ruby version supported by uberspace.
