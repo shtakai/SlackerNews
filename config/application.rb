@@ -16,7 +16,7 @@ module SlackerNews
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
 
-    Rails.env.production?  
+    if Rails.env.production?  
         config.before_configuration do
           # env_file = File.join(Rails.root, 'config', 'local_env.yml')
           # TODO ACHTUNG WATCH OUT this must be solved
