@@ -49,6 +49,8 @@ gem 'cancancan', '~> 2.0'
 # pagination
 gem 'will_paginate', '~> 3.1.1'
 
+# searching
+gem 'make_model_searchable'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

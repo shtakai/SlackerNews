@@ -22,8 +22,9 @@ class Post < ActiveRecord::Base
 
 	as_enum :status, pending: 0, published: 1, deleted: 2
 
-	# sorting stuff
+	searchable_attributes :title, :description
 
+	# sorting stuff
 	VALID_SORT_ORDERS = %w(best newest hot)
 
 	scope :best, -> { order(vote_cache: :desc)}

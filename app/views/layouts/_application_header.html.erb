@@ -1,0 +1,43 @@
+<header>
+  <div class="header-container">
+    <div class="page-header">
+        <a href="<%= root_path %>" class="brand">SlackerNews 2.0</a> <small>alpha centauri</small>
+    </div>
+    <div class="header-search">
+      <%= form_tag(sorted_posts_path(:sortby => params[:sortby]), :method => "get", id: "search-form") do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search all posts" %>
+        <%= submit_tag "Search", :name => nil %>
+    <% end %>
+    </div>
+    <div class="menu-user">
+        <% if user_signed_in? %>
+          <%= link_to 'All Users', users_path %> | 
+          <%= link_to 'New Post', new_post_path, class: 'btn btn-primary' %>
+
+            
+          <div class="dropdown">
+            <button class="dropbtn"><u>
+              <%= current_user.name != "" ? current_user.name : 'this could be your name'%>
+                
+              </u></button>
+            <div class="dropdown-content">
+              <ul>
+                  <li><%= link_to 'Show Profile', current_user %></li>
+                  <li><%= link_to 'Edit Profile', edit_user_path(current_user) %></li>
+                  <% if current_user.admin? %>
+                    <li><%= link_to 'Deleted Posts', index_deleted_path %></li>
+                  <% end %>
+                  <%= render 'devise/menu/registration_items' %>
+                  <%= render 'devise/menu/login_items' %>
+              </ul>
+            </div>
+          </div>  
+          <%= current_user.karma %>
+        <% else %>
+          <ul class="hmenu">
+            <%= render 'devise/menu/login_items' %><%= render 'devise/menu/registration_items' %>
+          </ul>
+        <% end %>
+    </div>
+  </div>
+</header>

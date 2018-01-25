@@ -19,5 +19,6 @@
 <h3><%= @category.desc %></h3>
 
 <% if can? :update, @category %>
+<br>
     <%= link_to 'Edit Slackegory', edit_category_path(@category) %>
 <% end %>

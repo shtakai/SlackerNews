@@ -20,7 +20,7 @@ Rails.application.routes.draw do
         get 'unsubscribe' => 'categories#unsubscribe'
       end
     end
-    get 'slackegory/:slug(/:sortby)' => 'posts#category'
+    get 'slackegory/:slug(/:sortby)' => 'posts#category', as: :category_posts
 
 
 
@@ -38,7 +38,7 @@ Rails.application.routes.draw do
         delete 'delete' => 'posts#mark_as_deleted'
       end
       collection do
-        get '(:sortby)' => 'posts#index'
+        get '(:sortby)' => 'posts#index', :as => :sorted
       end
       resources :comments
     end
