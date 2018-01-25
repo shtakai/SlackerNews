@@ -10,6 +10,8 @@ class Category < ActiveRecord::Base
 
     validates_uniqueness_of :slug
     validates_uniqueness_of :name
+    validates :slug, presence: true
+    validates :name, presence: true
 
 
     self.per_page = 20
