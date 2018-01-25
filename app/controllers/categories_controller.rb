@@ -4,8 +4,11 @@ class CategoriesController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
 
   def index
-    @categories = Category.all.order(name: :asc).page(params[:page] ? params[:page] : 1)
-    
+    if request.params[:search]
+      @categories = Category.search(request.params[:search]).order(name: :asc).page(params[:page] ? params[:page] : 1)
+    else
+      @categories = Category.all.order(name: :asc).page(params[:page] ? params[:page] : 1)
+    end
   end
 
   # def show

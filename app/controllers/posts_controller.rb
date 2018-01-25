@@ -7,7 +7,11 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = paginate(sort(Post.all))
+    if request.params[:search]
+      @posts = paginate(sort(Post.search(request.params[:search])))
+    else
+      @posts = paginate(sort(Post.all))
+    end
   end
 
   def index_deleted

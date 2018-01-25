@@ -13,7 +13,10 @@ class Category < ActiveRecord::Base
     validates :slug, presence: true
     validates :name, presence: true
 
+    searchable_attributes :name, :desc
 
+
+    # size of page in frontend (has nothing to do with db pagination)
     self.per_page = 20
 
     def subscribed(user)

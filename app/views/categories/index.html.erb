@@ -2,6 +2,13 @@
 
 <%= link_to 'Create new slackegory', new_category_path %>
 
+<div class="search-container">
+    <%= form_tag(categories_path, :method => "get", id: "search-form") do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search for slackegory" %>
+        <%= submit_tag "Search", :name => nil %>
+    <% end %>
+</div>
+
 <div class="pagination-container">
   <%= will_paginate @categories %>
 </div>
