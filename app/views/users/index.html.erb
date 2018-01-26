@@ -18,7 +18,7 @@
         <% User.all.each do |user|  %>
             <tr>
                 <td><!-- Hier kommt mal der avatar hin --></td>
-                <td><%= user.name %></td>
+                <td><%= link_to user.name, user %></td>
                 <td><%= user.karma %></td>
                 <td><%= user.posts.size %></td>
                 <td><%= user.comments.size %></td>
