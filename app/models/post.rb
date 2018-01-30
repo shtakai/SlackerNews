@@ -39,10 +39,16 @@ class Post < ActiveRecord::Base
 	# Class Methods
 	# ============================
 
+	def self.in_user_subscriptions(user)
+		sub_ids = user.subscriptions.ids
+		self.joins(:posts_categories).where('category_id IN (?)', sub_ids).references(:categories).uniq
+	end
+
 
 	# ============================
 	# Instance Methods
 	# ============================
+
 
 	def vote(user, amount)
 		vo = self.votes.find_or_initialize_by(user: user)

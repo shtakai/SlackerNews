@@ -30,11 +30,7 @@ class PostsController < ApplicationController
 
 
   def subscriptions
-    # According to this so-post, this variant is way quicker
-    # https://stackoverflow.com/questions/3941945/array-include-any-value-from-another-array
-    @posts = paginate(sort(Post.all))
-    @posts = @posts.select{|p| p.categories.any? {|c| current_user.subscriptions.include? c }}
-    # @posts = Post.all.select{|p| current_user.subscriptions.include? p.category}
+    @posts = paginate(sort(Post.in_user_subscriptions(current_user)))
     render 'index'
   end
 
