@@ -1,8 +1,7 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.4'
+gem 'rails', '~> 4.2.7.1'
 gem 'puma'
 
 # Use sqlite3 as the database for Active Record
@@ -56,6 +55,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   # gem 'byebug'
 
+
 end
 
 group :development do
@@ -71,8 +71,6 @@ group :development do
   gem 'capistrano3-puma',   require: false
 
   # gem 'capistrano-uberspace', github: 'tessi/capistrano-uberspace'
-
-
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
