@@ -22,5 +22,6 @@ Gemfile.lock
 
 *.sublime-workspace
 
+/spec/examples.txt
 
 *.DS_Store
