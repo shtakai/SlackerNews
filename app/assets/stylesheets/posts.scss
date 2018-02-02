@@ -25,6 +25,7 @@
 .post-link
 {
   font-weight: bold;
+  text-decoration: none;
 }
 
 .post-meta
@@ -48,11 +49,18 @@
 .post-comments-link
 {
   color: #888;
+  text-decoration: none;
 }
 
 .category-label a
 {
   background-color: #ddd;
-  //margin-right:
+  text-decoration: none;
 }
 
+.post-upvote-link a{
+  text-decoration: none;
+}
+.post-downvote-link a{
+  text-decoration: none;
+}

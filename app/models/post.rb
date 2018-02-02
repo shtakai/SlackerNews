@@ -33,7 +33,7 @@ class Post < ActiveRecord::Base
 
 
 	# a very good thing to get from global settings
-	self.per_page = 20
+	self.per_page = 3
 
 	# ============================
 	# Class Methods

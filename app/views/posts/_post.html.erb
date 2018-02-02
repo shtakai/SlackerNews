@@ -4,8 +4,8 @@
       <a class="post-link" href="<%= post.url %>" target="_blank"><%= post.title %></a>
 		(
       <span title="<%= post.heat %>"><%= post.score %></span>
-      <%= link_to('+', upvote_post_path(post)) %> /
-      <%= link_to('-', downvote_post_path(post)) %>
+      <span class="post-upvote-link"> <%= link_to('+', upvote_post_path(post)) %></span> /
+      <span class="post-downvote-link"> <%= link_to('-', downvote_post_path(post)) %></span>
       )
 
       <% post.categories.each do |c| %>
