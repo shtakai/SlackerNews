@@ -25,3 +25,5 @@ Gemfile.lock
 /spec/examples.txt
 
 *.DS_Store
+
+config/.local_env.yml
