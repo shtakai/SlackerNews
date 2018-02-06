@@ -61,6 +61,10 @@ group :development, :test do
   gem 'factory_bot_rails'
 
 end
+group :production do
+  gem 'pghero'
+  gem 'pg_query', '>= 0.9.0'
+end
 
 group :development do
   gem 'byebug'
