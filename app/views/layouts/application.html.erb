@@ -28,11 +28,11 @@
 
 	<hr class="clearfix">
 
-	<main>
+	<%= yield %>
+  <main>
         <% if notice %>
             <p id="notice" class="alert alert-info"><%= notice %></p>
         <% end %>
-		<%= yield %>
 	</main>
 
 	<hr>

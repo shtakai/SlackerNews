@@ -47,7 +47,6 @@ Rails.application.routes.draw do
   authenticate :user, lambda { |u| u.admin? } do
     scope "/admin" do
       get 'posts/deleted' => 'posts#index_deleted', :as => :index_deleted
-      mount PgHero::Engine, at: "pghero"
     end
   end
 

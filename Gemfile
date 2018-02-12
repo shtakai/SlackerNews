@@ -62,8 +62,7 @@ group :development, :test do
 
 end
 group :production do
-  gem 'pghero'
-  gem 'pg_query', '>= 0.9.0'
+  
 end
 
 group :development do

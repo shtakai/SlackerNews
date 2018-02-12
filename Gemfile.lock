@@ -129,9 +129,6 @@ GEM
       rack
       rake (>= 0.8.1)
     pg (0.21.0)
-    pg_query (1.0.1)
-    pghero (2.1.0)
-      activerecord
     popper_js (1.12.9)
     puma (3.11.2)
     rack (1.6.8)
@@ -257,8 +254,6 @@ DEPENDENCIES
   make_model_searchable
   passenger
   pg
-  pg_query (>= 0.9.0)
-  pghero
   puma
   rails (~> 4.2.7.1)
   rollbar
