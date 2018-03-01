@@ -54,24 +54,16 @@ class CategoriesController < ApplicationController
   end
 
   def subscribe
-    if not @category.subscribed(current_user)
-      if @category.subscribe(current_user)
-        redirect_to @category, notice: 'Successfully subscribed.'
-      else
-        redirect_to @category, notice: 'Could not subscribe.'
-      end
+    if not @category.subscribed(current_user) && @category.subscribe(current_user)
+      redirect_to @category, notice: 'Successfully subscribed.'
     else
       redirect_to @category, notice: 'Could not subscribe.'
     end
   end
 
   def unsubscribe
-    if @category.subscribed(current_user)
-      if @category.unsubscribe(current_user)
-        redirect_to @category, notice: 'Successfully unsubscribed.'
-      else
-        redirect_to @category, notice: 'Could not unsubscribe.'
-      end
+    if @category.subscribed(current_user) && @category.unsubscribe(current_user)
+      redirect_to @category, notice: 'Successfully unsubscribed.'
     else
       redirect_to @category, notice: 'Could not unsubscribe.'
     end
