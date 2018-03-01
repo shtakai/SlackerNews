@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy, :upvote, :downvote, :favour, :unfavour, :mark_as_deleted]
   before_action :load_categories
   before_action :set_user, only: [:user_posts, :user_favourites]
-  before_filter :authenticate_user!, :except => [:show, :index, :user_posts]  
+  before_filter :authenticate_user!, :except => [:show, :index, :user_posts]
 
   # GET /posts
   # GET /posts.json
@@ -21,13 +21,12 @@ class PostsController < ApplicationController
   end
 
 
-  # Probably deprecated. /categories/:id/posts user for now 
+  # Probably deprecated. /categories/:id/posts user for now
   def category
     @category = Category.find_by_slug!(params[:slug])
     @posts = paginate(sort(@category.posts))
     render 'index'
   end
-
 
   def subscriptions
     # According to this so-post, this variant is way quicker
@@ -142,7 +141,6 @@ class PostsController < ApplicationController
       redirect_to @post
     end
   end
-
 
   # DELETE /posts/1
   # DELETE /posts/1.json

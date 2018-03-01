@@ -20,16 +20,14 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    # normal users can update their comments and 
+    # normal users can update their comments and
     authorize! :destroy, @comment
     @comment.destroy
     respond_to do |format|
       format.html { redirect_to @post, notice: 'Comment was successfully destroyed.' }
       format.json { head :no_content }
     end
-  end  
-
-
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -45,6 +43,4 @@ class CommentsController < ApplicationController
     def comment_params
       params.require(:comment).permit(:text)
     end
-
-
 end
