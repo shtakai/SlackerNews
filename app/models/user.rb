@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+    :recoverable, :rememberable, :trackable, :validatable
 
   validates :name, presence: true
 
@@ -30,5 +30,4 @@ class User < ActiveRecord::Base
     self.karma_cache = karma
     self.save
   end
-
 end
