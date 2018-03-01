@@ -54,7 +54,7 @@ class CategoriesController < ApplicationController
   end
 
   def subscribe
-    if not @category.subscribed(current_user) && @category.subscribe(current_user)
+    if !@category.subscribed(current_user) && @category.subscribe(current_user)
       redirect_to @category, notice: 'Successfully subscribed.'
     else
       redirect_to @category, notice: 'Could not subscribe.'
