@@ -1,7 +1,7 @@
 # SlackerNews
 HackerNews Clone in Rails
 
-[![Travis Build Status](https://api.travis-ci.org/kaozente/SlackerNews.svg?branch=master)](https://travis-ci.org/kaozente/SlackerNews)
+[![Travis Build Status](https://api.travis-ci.org/kaozente/SlackerNews.svg?branch=master)](https://travis-ci.org/kaozente/SlackerNews) [![GuardRails badge](https://badges.production.guardrails.io/shtakai/SlackerNews.svg)](https://www.guardrails.io)
 
 ## Testing
 
